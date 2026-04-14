@@ -7,7 +7,6 @@
 
       async function checkWeather(city) {
         const response = await fetch(apiUrl + `&appid=${apiKey}&q=${city}`);
-        console.log(data);
 
         if(response.status == 404){
             document.querySelector(".error").style.display = "block";
@@ -45,6 +44,13 @@
 
       searchBtn.addEventListener("click", ()=>{
         checkWeather(searchBox.value);
+      });
+
+      // Submit search when user presses Enter in the input
+      searchBox.addEventListener("keyup", (event) => {
+        if (event.key === "Enter") {
+          searchBtn.click();
+        }
       });
 
       //checkWeather();
